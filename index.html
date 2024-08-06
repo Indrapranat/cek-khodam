@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('bg'); /* Ganti dengan nama file background Anda */
+            background-size: cover;
+            background-position: center;
+      
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #khodamImage {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cek Khodam Anda</h2>
+        <input type="text" id="nameInput" placeholder="Masukkan nama Anda">
+        <button onclick="checkKhodam()">Cek Khodam</button>
+        <div id="result"></div>
+        <img id="khodamImage" src="" alt="Khodam" style="display: none;">
+    </div>
+
+    <script>
+        const khodamList = [
+            { name: "Serigala", image: "img/wolf.png" },
+            { name: "Harimau", image: "img/tiger.png" },
+            { name: "Elang", image: "img/eagle.png" },
+            { name: "Ular", image: "img/snake.png" },
+            { name: "Kucing", image: "img/cat.png" }
+        ];
+
+        function checkKhodam() {
+            const name = document.getElementById('nameInput').value;
+            if (name.trim() === "") {
+                alert("Mohon masukkan nama Anda!");
+                return;
+            }
+
+            const randomKhodam = khodamList[Math.floor(Math.random() * khodamList.length)];
+            const resultElement = document.getElementById('result');
+            const imageElement = document.getElementById('khodamImage');
+
+            resultElement.textContent = `Khodam ${name} adalah ${randomKhodam.name}`;
+            imageElement.src = randomKhodam.image;
+            imageElement.alt = randomKhodam.name;
+            imageElement.style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>
